@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="comments-root collection">
+  {% for comment in comments %}
+    {% with entry=comment.content_object %}
+      <a
+        class="collection-item"
+        href="{{ entry.get_absolute_url }}#comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
+        title="{% trans 'Comment on' %} {{ entry.title }}"
+      >
+        {{ comment.user_name }} {% trans "in" %}
+        {{ entry.title }}
+      </a>
+    {% endwith %}
+  {% empty %}
+    <div class="collection-item">
+      {% trans "No comments yet." %}
+    </div>
+  {% endfor %}
+</div>

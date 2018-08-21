@@ -1,0 +1,25 @@
+{% load i18n %}
+{% url 'zinnia:category_list' as category_list_url %}
+<li {% if category_list_url in request.path %}class="active"{% endif %}>
+  <a href="{{ category_list_url }}" title="{% trans 'Category list' %}">
+    <i class="material-icons left">folder_special</i> {% trans "Categories" %}
+  </a>
+</li>
+{% url 'zinnia:author_list' as author_list_url %}
+<li {% if author_list_url in request.path %}class="active"{% endif %}>
+  <a href="{{ author_list_url }}" title="{% trans 'Author list' %}">
+    <i class="material-icons left">group</i> {% trans "Authors" %}
+  </a>
+</li>
+{% url 'zinnia:tag_list' as tag_list_url %}
+<li {% if tag_list_url in request.path %}class="active"{% endif %}>
+  <a href="{{ tag_list_url }}" title="{% trans 'Tag list' %}">
+    <i class="material-icons left">label</i> {% trans "Tags" %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'zinnia:entry_feed' %}" title="{% trans 'RSS Feed of latest entries' %}" class="feeds">
+    <i class="material-icons left">rss_feed</i>
+    <span class="hide-on-med-and-up"> {% trans 'RSS Feed' %}</span>
+  </a>
+</li>

@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="linkbacks-root collection">
+  {% for linkback in linkbacks %}
+      {% with entry=linkback.content_object %}
+        <a
+          class="collection-item"
+          href="{{ entry.get_absolute_url }}#c{{ linkback.pk }}"
+          title="{% trans 'Linkback on' %} {{ entry.title }}"
+        >
+          {{ linkback.user_name }} {% trans "in" %} {{ entry.title }}
+        </a>
+      {% endwith %}
+    </li>
+  {% empty %}
+    <div class="collection-item">
+      {% trans "No linkbacks yet." %}
+    </div>
+  {% endfor %}
+</div>

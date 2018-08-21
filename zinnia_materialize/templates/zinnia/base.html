@@ -1,0 +1,93 @@
+{% extends "zinnia:zinnia/base.html" %}
+{% load zinnia i18n %}
+
+{% block sidebar %}
+  <aside id="widget-welcome" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Welcome!" %}</span>
+      <p>
+        {% trans "This simple theme is the default appearance of Zinnia." %}
+        <br />
+      </p>
+      <p>
+        {% trans "Don't hesitate to override the template <strong>zinnia/base.html</strong> to start <a href='http://docs.django-blog-zinnia.com/en/latest/how-to/customize_look_and_feel.html'>customizing your Weblog</a>." %}
+      </p>
+    </div>
+  </aside>
+
+  <aside id="widget-categories" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Categories" %}</span>
+      {% get_categories %}
+    </div>
+  </aside>
+
+  <aside id="widget-authors" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Authors" %}</span>
+      {% get_authors %}
+    </div>
+  </aside>
+
+  <aside id="widget-recents" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Recent Entries" %}</span>
+      {% get_recent_entries %}
+    </div>
+  </aside>
+
+  <aside id="widget-comments" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Recent Comments" %}</span>
+      {% get_recent_comments %}
+    </div>
+  </aside>
+
+  <aside id="widget-linkbacks" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Recent Linkbacks" %}</span>
+      {% get_recent_linkbacks %}
+    </div>
+  </aside>
+
+  <aside id="widget-randoms" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Random Entries" %}</span>
+      {% get_random_entries %}
+    </div>
+  </aside>
+
+  <aside id="widget-populars" class="widget card">
+    <div class="card-content">
+      <span class="card-title">{% trans "Popular entries" %}</span>
+      {% get_popular_entries %}
+    </div>
+  </aside>
+
+  {% if user.is_authenticated %}
+    <aside id="widget-tools" class="widget card">
+      <div class="card-content">
+        <span class="card-title">{% trans "Tools" %}</span>
+        <div class="collection ">
+          {% if perms.zinnia %}
+            <a href="{% url 'admin:app_list' 'zinnia' %}" title="{% trans 'Dashboard' %}" class="collection-item">
+              <span class="glyphicon glyphicon-book"></span>
+              {% trans "Dashboard" %}
+            </a>
+          {% endif %}
+          {% if perms.zinnia.add_entry %}
+            <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans 'Post an entry' %}" class="collection-item">
+              <span class="glyphicon glyphicon-pencil"></span>
+              {% trans "Post an entry" %}
+            </a>
+          {% endif %}
+          {% block admin-tools %}{% endblock admin-tools %}
+          <a href="{% url 'admin:logout' %}" title="{% trans 'Log out' %}" class="collection-item">
+            <span class="glyphicon glyphicon-off"></span>
+            {% trans "Log out" %}
+          </a>
+        </div>
+      </div>
+    </aside>
+  {% endif %}
+{% endblock sidebar %}

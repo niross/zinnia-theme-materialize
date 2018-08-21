@@ -1,0 +1,27 @@
+nav.crumbs {
+  margin: 5px;
+  background-color: #fff;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: #757575;
+}
+nav.crumbs a {
+  color: #757575;
+}
+.top-align {
+  margin-top: 0;
+}
+.breadcrumb {
+  font-size: 17px;
+}
+#sidebar aside.card .card-content p:not(:last-child) {
+  margin-bottom: 1em;
+}
+.hentry .card-title small  {
+  font-size: 55%;
+}
+.hentry.card .card-action p a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: #039be5;
+  margin-right: 0;
+}

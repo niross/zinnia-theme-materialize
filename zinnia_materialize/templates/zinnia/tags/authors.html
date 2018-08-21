@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="collection {% if not authors %}no-{% endif %}authors">
+  {% for author in authors %}
+    <a href="{{ author.get_absolute_url }}"
+       title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}"
+       class="collection-item {% if not author.get_full_name %} nickname{% endif %}{% if author.get_username == context_author.get_username %} current{% endif %}"
+    >
+      <span class="badge">
+        {% blocktrans count entry_count=author.count_entries_published %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+      </span>
+      {{ author.get_full_name }}
+    </a>
+  {% empty %}
+    <div class="collection-item">
+      {% trans "No authors yet." %}
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="recents-root collection">
+  {% for entry in entries %}
+    <a
+      href="{{ entry.get_absolute_url }}"
+      class="collection-item"
+      title="{{ entry.title }}"
+    >
+      {{ entry.title }}
+    </a>
+  {% empty %}
+    <div class="collection-item">
+      {% trans "No entries yet." %}
+    </div>
+  {% endfor %}
+</div>
